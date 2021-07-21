@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  graphql:
+    container_name: graphql
+    restart: always
+    build:
+      context: ./server
+    expose:
+      - 4001
+    volumes:
+      - ./server:/home/node/app
+      - /home/node/app/node_modules
+    env_file:
+      - ./server/.env
+    environment:
+      - CODEWARS_SERVICE_PORT=4001
+      - CODEWARS_SERVICE_URL=http://localhost:4001
+      - GATEWAY_PORT=4000
